@@ -59,4 +59,51 @@
 //  */
 // const secs = Math.floor((time % (1000 * 60)) / 1000);
 
+const refs = {
+    days: document.querySelector('[data-value="days"]'),
+    hours: document.querySelector('[data-value="hours"]'),
+    mins: document.querySelector('[data-value="mins"]'),
+    secs: document.querySelector('[data-value="secs"]'),
+}
 
+// console.log(refs.days);
+// console.log(refs.hours);
+// console.log(refs.mins);
+// console.log(refs.secs);
+
+
+class CountdownTimer {
+    constructor({selector, targetDate}){
+        this.targetDate = targetDate;
+    }
+
+getTimeComponents (time) {
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+    return{days, hours, mins, secs}
+}
+startBackCount () {
+    setInterval(() => {
+    const currentTime = Date.now();
+    const deltaTime = this.targetDate - currentTime;
+    const time = this.getTimeComponents(deltaTime)
+    console.log(time);
+    }, 1000);
+}
+}
+
+const timer1 = new CountdownTimer({
+    selector: '#timer-1',
+    targetDate: new Date('Jun 08, 2021'),
+  });
+
+ timer1.startBackCount();
+
+//   console.log(timer1);
+//   console.log(timer1.getTimeComponents(new Date('Jun 08, 2021')));
+
+//   const date = new Date();
+//   console.log(date.getDay());
