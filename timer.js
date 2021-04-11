@@ -78,20 +78,31 @@ class CountdownTimer {
     }
 
 getTimeComponents (time) {
-    const days = Math.floor(time / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((time % (1000 * 60)) / 1000);
+    const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+    const hours = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
 
     return{days, hours, mins, secs}
 }
+pad(value) {
+    return String(value).padStart(2, '0');
+}
+
 startBackCount () {
     setInterval(() => {
     const currentTime = Date.now();
     const deltaTime = this.targetDate - currentTime;
     const time = this.getTimeComponents(deltaTime)
-    console.log(time);
+    this.timerVisualisation(time);
     }, 1000);
+}
+
+timerVisualisation ({days, hours, mins, secs}) {
+    refs.days.textContent = days,
+    refs.hours.textContent = hours,
+    refs.mins.textContent = mins,
+    refs.secs.textContent = secs
 }
 }
 
@@ -101,9 +112,3 @@ const timer1 = new CountdownTimer({
   });
 
  timer1.startBackCount();
-
-//   console.log(timer1);
-//   console.log(timer1.getTimeComponents(new Date('Jun 08, 2021')));
-
-//   const date = new Date();
-//   console.log(date.getDay());
