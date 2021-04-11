@@ -1,0 +1,33 @@
+body {
+    border: 1px solid #AFB1B8;
+    box-sizing: border-box;
+    border-radius: 10px;
+   justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #ffd54f;
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 350px;
+  }
+
+  div {
+    display: inline-block;
+    font-size: 10px;
+    list-style-type: none;
+    padding: 1em;
+    /* text-transform: uppercase; */
+  }
+  
+  span {
+    display: block;
+    font-size: 4.5rem;
+  }
+
+  .label {
+      font-size: 20px;
+  }
+
+
+
+
